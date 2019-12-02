@@ -2,21 +2,21 @@
 
 
 git init
-git add -a
+git add .
 
 git status
 
-read -p "Est ce que tu es sur de vouloir push? y/n" answer
+echo "Je suppose que vous êtes connecté, si vous n'êtes pas sûr, quittez le programme et suivez le tuto"
 
-case answer in
+read -p "Est ce que tu es sur de vouloir push? y/n " answer
 
-	y)
-		read -p "Quel est le chemin vers votre repo? (exemple: https://github.com/MonNomDeCompte/MonRepo.git" path
-		read -p "Numero du push? (En lettres en anglais)" numberOC
-		git commit -m "$numberOC commit"
-		git remote add origin $path
-		git push -u origin master;;
+if (($answer == "y")); then
 
-	*)
-		exit;;
-esac
+	read -p "Quel est le chemin vers votre repo? (exemple: https://github.com/MonNomDeCompte/MonRepo.git" path
+	read -p "Numero du push? (En lettres en anglais)" numberOC
+	git commit -m "$numberOC commit"
+	git remote add origin $path
+	git push -u origin master
+else
+	exit
+fi
